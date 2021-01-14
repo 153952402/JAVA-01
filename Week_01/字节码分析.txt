@@ -1,0 +1,130 @@
+$ javap -v Test3.class
+Classfile /E:/GitSapce/test/src/main/java/Test3.class
+  Last modified 2021-1-14; size 527 bytes
+  MD5 checksum 4beb8387037a56faaebcafa66368b728
+  Compiled from "test3.java"
+public class Test3
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #7.#17         // java/lang/Object."<init>":()V
+   #2 = Class              #18            // Test3
+   #3 = Methodref          #2.#17         // Test3."<init>":()V
+   #4 = Methodref          #2.#19         // Test3.mathTest:()V
+   #5 = Fieldref           #20.#21        // java/lang/System.out:Ljava/io/PrintStream;
+   #6 = Methodref          #22.#23        // java/io/PrintStream.println:(I)V
+   #7 = Class              #24            // java/lang/Object
+   #8 = Utf8               <init>
+   #9 = Utf8               ()V
+  #10 = Utf8               Code
+  #11 = Utf8               LineNumberTable
+  #12 = Utf8               main
+  #13 = Utf8               ([Ljava/lang/String;)V
+  #14 = Utf8               mathTest
+  #15 = Utf8               SourceFile
+  #16 = Utf8               test3.java
+  #17 = NameAndType        #8:#9          // "<init>":()V
+  #18 = Utf8               Test3
+  #19 = NameAndType        #14:#9         // mathTest:()V
+  #20 = Class              #25            // java/lang/System
+  #21 = NameAndType        #26:#27        // out:Ljava/io/PrintStream;
+  #22 = Class              #28            // java/io/PrintStream
+  #23 = NameAndType        #29:#30        // println:(I)V
+  #24 = Utf8               java/lang/Object
+  #25 = Utf8               java/lang/System
+  #26 = Utf8               out
+  #27 = Utf8               Ljava/io/PrintStream;
+  #28 = Utf8               java/io/PrintStream
+  #29 = Utf8               println
+  #30 = Utf8               (I)V
+{
+  public Test3();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 1: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC             //flags，全名access_flags，是一个u2类型信息，用位来记录前方法的访问标识，ACC代表access，ACC_PUBLIC代表本方法为public，ACC_STATIC则表示为静态方法
+    Code:									  //代表方法表中方法信息的子属性表，方法体的代码编译后便存于Code属性表
+      stack=2, locals=2, args_size=1          //这里代表最大操作栈深度为2，所需局部变量表slot数也为2，本方法有一个参数
+         0: new           #2                  // new 字节码，后面接class类型的常量索引，用来创建对象，如果对象对应的类还没加载便需要先加载类.
+		 
+         3: dup								  //复制栈顶的元素（为下面的方法调用准备，而当前栈顶的元素用来存储到局部变量表中的
+											  
+         4: invokespecial #3                  // invokespecial指令用来调用实例方法，后面接Methodref类型常量索引
+		 
+         7: astore_1						  //a代表引用类型，store代表将栈顶数据存储到局部变量表，_1是第【二】个slot槽，因为从0开始
+		                                      //而且当前方法是静态方法，所以第一个slot槽并不用来存储当前方法的所属的实例对象
+		 
+         8: aload_1							  //将当前局部变量表中取第一个slot槽中的数据，aload中a代表加载的是引用类型对象
+		 
+         9: invokespecial #4                  // 调用当前栈顶实例对象的方法，#4指向常量池中的 Methodref类型常量，
+        12: return						      //当前main方法实际上是void， return字节码由编译器自动补上的
+      LineNumberTable: //LineNumberTable 是方法表中方法的子属性表，表示当前方法中字节码与源代码行号的对应
+        line 3: 0 // 从第 0 个字节码开始，一直到第7个字节码，其对应源代码行号都是3
+        line 4: 8 // 从第 8 个字节码开始，一直到第11个字节码，其对应源代码行号都是4
+        line 5: 12// 从第 12 个字节码开始后面所有字节码其对应源代码行号都是5
+		
+  private void mathTest();
+    descriptor: ()V
+    flags: ACC_PRIVATE
+    Code:
+      stack=2, locals=9, args_size=1
+         0: iconst_1  				// iconst中i代表int（下同），用来加载-128-127之间的int型数据，此处是将int 1加载到栈顶，
+									// 数值 1 - 5都是比较常用的值，所以1 - 5都有直接对应的字节码iconst_1 ~ iconst_5 可以用
+									// 超过5 则可能需要用到bipush、sipush、ldc等字节码
+									
+         1: istore_1  				// i代表int数据类型，store代表将操作栈的数据存入局部变量表，istore_1是指存入局部局部变量表的第二个
+         2: iconst_2  				// 与第0个字节码iconst_1类似
+         3: istore_2  				// 与第1个字节码istore_1类似
+         4: iload_1   				// 所有以xload类似的字节码都是从局部变量表加载数据到操作栈顶，后面的数字代表数据从第几个slot槽中取数据
+         5: iload_2  				
+         6: iadd      				// 加法操作，i代表int，将操作数栈顶的连个int型数据相加，并将结果压入栈顶
+         7: istore_3  				
+         8: iload_2				
+         9: iload_1				
+        10: isub      				//乘法操作，与加法类似，将操作数栈顶的连个int型数据【相乘】，并将结果压入栈顶
+        11: istore        4 		//istore 与istore_1类似，不同在于它后面接操作数4，因为只有 0 ~ 3 才有与之匹配的 istore_0 ~ istore_3
+        13: iload_3             
+        14: iload         4
+        16: imul                   //乘法操作的字节码
+        17: istore        5
+        19: iload_3
+        20: iload         4
+        22: idiv
+        23: istore        6
+        25: ldc           #5      // ldc 操作可以将 int float String类型常量值从常量池压入栈顶
+        27: astore        7  
+        29: ldc           #5                  // String x
+        31: astore        8
+        33: getstatic     #6      // Field java/lang/System.out:Ljava/io/PrintStream; 获取静态属性
+        36: iload         5
+        38: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+        41: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        44: iload         6
+        46: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+        49: return
+      LineNumberTable:
+        line 8: 0
+        line 9: 2
+        line 10: 4
+        line 11: 8
+        line 12: 13
+        line 13: 19
+        line 14: 25
+        line 15: 29
+        line 16: 33
+        line 17: 41
+        line 18: 49
+}
+
+}
+SourceFile: "test3.java"
